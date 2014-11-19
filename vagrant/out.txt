@@ -1,0 +1,40 @@
+==> ks00: Running provisioner: puppet...
+==> ks00: Running Puppet with site.pp...
+==> ks00: stdin: is not a tty
+==> ks00: Warning: Config file /etc/puppet/hiera.yaml not found, using Hiera defaults
+==> ks00: WARN: Thu Sep 25 22:16:29 +0200 2014: Not using Hiera::Puppet_logger. It does not report itself to be suitable.
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Hiera YAML backend starting
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking up apache2::userName in YAML backend
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking for data source common
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Cannot find datafile /var/lib/hiera/common.yaml, skipping
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking up apache2::groupName in YAML backend
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking for data source common
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Cannot find datafile /var/lib/hiera/common.yaml, skipping
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking up apache2::configFile in YAML backend
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking for data source common
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Cannot find datafile /var/lib/hiera/common.yaml, skipping
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking up apache2::service in YAML backend
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking for data source common
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Cannot find datafile /var/lib/hiera/common.yaml, skipping
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking up apache2::configDir in YAML backend
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking for data source common
+==> ks00: 
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Cannot find datafile /var/lib/hiera/common.yaml, skipping
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking up apache2::packages in YAML backend
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Looking for data source common
+==> ks00: DEBUG: Thu Sep 25 22:16:29 +0200 2014: Cannot find datafile /var/lib/hiera/common.yaml, skipping
+==> ks00: Notice: /Stage[main]/Apache2::Config/File[/etc/httpd/conf/]: Dependency Package[apache2-mpm-worker 2.2.14-5ubuntu8.11] has failures: true
+==> ks00: Notice: /Stage[main]/Apache2::Config/File[/etc/httpd/conf//httpd.conf]: Dependency Package[apache2-mpm-worker 2.2.14-5ubuntu8.11] has failures: true
+==> ks00: Notice: /Stage[main]/Apache2::Service/Service[httpd]: Dependency Package[apache2-mpm-worker 2.2.14-5ubuntu8.11] has failures: true
+==> ks00: Error: Execution of '/usr/bin/apt-get -q -y -o DPkg::Options::=--force-confold install apache2-mpm-worker 2.2.14-5ubuntu8.11' returned 100: Reading package lists...
+==> ks00: Building dependency tree...
+==> ks00: Reading state information...
+==> ks00: E: Couldn't find package apache2-mpm-worker 2.2.14-5ubuntu8.11
+==> ks00: Error: /Stage[main]/Apache2::Package/Package[apache2-mpm-worker 2.2.14-5ubuntu8.11]/ensure: change from purged to present failed: Execution of '/usr/bin/apt-get -q -y -o DPkg::Options::=--force-confold install apache2-mpm-worker 2.2.14-5ubuntu8.11' returned 100: Reading package lists...
+==> ks00: Building dependency tree...
+==> ks00: Reading state information...
+==> ks00: E: Couldn't find package apache2-mpm-worker 2.2.14-5ubuntu8.11
+==> ks00: Warning: /Stage[main]/Apache2::Config/File[/etc/httpd/conf/]: Skipping because of failed dependencies
+==> ks00: Warning: /Stage[main]/Apache2::Config/File[/etc/httpd/conf//httpd.conf]: Skipping because of failed dependencies
+==> ks00: Warning: /Stage[main]/Apache2::Service/Service[httpd]: Skipping because of failed dependencies
+==> ks00: Notice: Finished catalog run in 0.24 seconds

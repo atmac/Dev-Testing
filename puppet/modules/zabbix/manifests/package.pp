@@ -1,10 +1,10 @@
 class zabbix::package () {
 
  
- exec { "create_jenkins_repo":
-    command => "wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo;sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key",
-    path    => "/usr/local/bin/:/bin/:/usr/bin/",
-    creates => "/etc/yum.repos.d/jenkins.repo"
+ exec { "create_zabbix_repo":
+    command => "rpm -ivh http://repo.zabbix.com/zabbix/2.2/rhel/6/x86_64/zabbix-release-2.2-1.el6.noarch.rpm",
+    path    => "/bin/",
+   # creates => "/etc/yum.repos.d/jenkins.repo"
   }
  
 # exec { "restart_iptables":
@@ -16,7 +16,7 @@ class zabbix::package () {
   package { $zabbix::packages:
     ensure => "installed",
     provider  => yum,
-    require => Exec["create_jenkins_repo"],
+    require => Exec["create_zabbix_repo"],
 }
 
 

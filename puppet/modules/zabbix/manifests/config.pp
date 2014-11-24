@@ -16,24 +16,14 @@ class zabbix::config {
  #   mode    => 644,
  #### before  => File[$zabbix::configFile]
 
-  file {"/var/lib/zabbix/.ssh/":
-    ensure  => directory,
-    owner   => zabbix,
-    group   => zabbix,
-    mode    => 700,
-    require => Package[$zabbix::packages],
-  }
-  file {"/var/lib/zabbix/config.xml":
-    ensure  => present,
-    owner   => zabbix,
-    group   => zabbix,
-    mode    => 644,
-    source  => "puppet:///modules/zabbix/var/lib/zabbix/config.xml",
-    require => Package[$zabbix::packages],
+ # file {"/var/lib/zabbix/.ssh/":
+  #  ensure  => directory,
+   # owner   => zabbix,
+    #group   => zabbix,
+    #mode    => 700,
+    #require => Package[$zabbix::packages],
   }
   
-  
-
   user { "zabbix":
     ensure      => present,
     home        => "/home/zabbix",
@@ -41,25 +31,44 @@ class zabbix::config {
     shell       => "/bin/bash",
     comment     => "zabbix User Account",
   }
-
+  
+  
+  file {"/etc/zabbix/zabbix_server.conf":
+    ensure  => present,
+    owner   => zabbix,
+    group   => zabbix,
+    mode    => 644,
+    source  => "puppet:///modules/zabbix/files/etc/zabbix/zabbix_server.conf",
+    require => Package[$zabbix::packages],
+  }
+  
+  file {"/etc/zabbix/zabbix_agentd.conf":
+    ensure  => present,
+    owner   => zabbix,
+    group   => zabbix,
+    mode    => 644,
+    source  => "puppet:///modules/zabbix/files/etc/zabbix/zabbix_agentd.conf",
+    require => Package[$zabbix::packages],
+  }
   
 
-  file { "/var/lib/zabbix/.ssh/id_rsa":
+  file {"/etc/zabbix/zabbix_agentd.conf":
     ensure  => present,
     owner   => zabbix,
     group   => zabbix,
-    mode    => 664,
-    source  => "puppet:///modules/zabbix/var/lib/zabbix/.ssh/id_rsa",
+    mode    => 644,
+    source  => "puppet:///modules/zabbix/files/etc/zabbix/zabbix_agentd.conf",
+    require => Package[$zabbix::packages],
   }
 
-  file { "/home/zabbixlave/.ssh/id_rsa":
-    ensure  => present,
-    owner   => zabbix,
-    group   => zabbix,
-    mode    => 664,
-    source  => "puppet:///modules/zabbix/home/zabbixlave/.ssh/id_rsa",
-    require => User["zabbixlave"],
-  }
+  #file { "/home/zabbixslave/.ssh/id_rsa":
+  #  ensure  => present,
+  #  owner   => zabbix,
+  #  group   => zabbix,
+  #  mode    => 664,
+   # source  => "puppet:///modules/zabbix/home/zabbixlave/.ssh/id_rsa",
+   # require => User["zabbixslave"],
+  
 
   file { "/etc/sysconfig/iptables":
     ensure  => present,
@@ -71,4 +80,3 @@ class zabbix::config {
   }
  
  
-}

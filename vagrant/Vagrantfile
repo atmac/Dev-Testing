@@ -28,7 +28,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 	end
 
+			config.vm.define :ks02 do |ks02_config|
+        			#ks02_config.vm.box = "chef/centos-5.10"
+                	#ks02_config.vm.box = "/data/virtualMachines/vagrant/boxes/centos-5.10-x86_64.box"
+                	#ks02_config.vm.box = "puppetlabs/centos-5.10-64-puppet"
+                	ks02_config.vm.box = "puppetlabs/centos-6.5-64-puppet"
+                	ks02_config.vm.hostname = "ks02"
+                	#ks02_config.vm.forward_port 80, 8000
 
+               			config.vm.provider :virtualbox do |vb|
+                        	vb.customize ["modifyvm", :id, "--memory", "512"]
+                        	vb.customize ["modifyvm", :id, "--cpus", "1"]
+               			end
+
+                	ks02_config.vm.network :private_network, ip: "10.1.1.101"
+                	#config.vm.provision :shell, :inline => "echo Hello, World"
+    		end
 
 			config.vm.define :ks01 do |ks01_config|
         			#ks01_config.vm.box = "chef/centos-5.10"
@@ -85,6 +100,8 @@ config.vm.define :ks04 do |ks04_config|
 
 			lamp_config.vm.network :private_network, ip: "10.1.1.3"
 		end
+
+
 
 
 	config.vm.provision "puppet" do |puppet|

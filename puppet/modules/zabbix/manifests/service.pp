@@ -10,8 +10,8 @@ class zabbix::service {
  #   subscribe   => File["${jenkins::configDir}/${jenkins::configFile}"],
   }
   
-  service { "iptables":
-    ensure  => "running",
-    enable  => "true",
+  #service { "iptables":
+    #ensure  => "running",
+   # enable  => "true",
   }
-}
+

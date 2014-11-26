@@ -1,10 +1,14 @@
 node ha01{	
-class { 'puppet': }
-
+class { 'haproxy': }
+class { 'keepalived': }
 
 }
 
+node ha02{  
+class { 'haproxy': }
+class { 'keepalived': }
 
+}
 
 #node 'ks01' {
  #   class { 'apache2': }

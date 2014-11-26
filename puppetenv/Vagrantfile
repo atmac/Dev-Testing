@@ -21,14 +21,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 				end
 
 			ha01_config.vm.network :private_network, ip: "11.1.1.1"
-
+			ha01_config.vm.network :private_network, ip: "11.1.1.20"
 	end
 	
 	
 	config.vm.define :ha02 do |ha02_config|
 	
 		 	ha02_config.vm.box = "nrel/CentOS-6.5-x86_64"
-			ha02_config.vm.hostname = "haproxy2"
+			ha02_config.vm.hostname = "ha02"
 			#ha02_config.vm.forward_port 80,8000
 
 				config.vm.provider :virtualbox do |vb|
@@ -37,12 +37,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 				end
 
 			ha02_config.vm.network :private_network, ip: "11.1.1.2"
-
+			ha02_config.vm.network :private_network, ip: "11.1.1.20"
 	end
 	
 
 
-	config.vm.define :pup02 do |pup01_config|
+	config.vm.define :pup01 do |pup01_config|
 	
 		 	pup01_config.vm.box = "nrel/CentOS-6.5-x86_64"
 			pup01_config.vm.hostname = "puppetmaster1"
